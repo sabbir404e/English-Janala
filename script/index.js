@@ -7,9 +7,13 @@ const loadLessions = () => {
 
 const removeActive = () => {
 
-    const lessionButtons = document.querySelectorAll("lession-btn");
+    const lessionButtons = document.querySelectorAll(".lession-btn");
     // console.log(lessionButtons);
-    lessionButtons.forEach(btn => btn.classList.remove("active"));
+    lessionButtons.forEach(btn => { 
+    btn.classList.remove("active");
+    btn.classList.add("btn-outline");
+
+    });
 };
 
 const loadLevelWord = (id) => {
@@ -20,10 +24,13 @@ const loadLevelWord = (id) => {
     fetch(url)
     .then((res) => res.json())
     .then(data => {
+
         removeActive(); //remove all active class
         const clickBtn = document.getElementById(`lession-btn-${id}`);
         // console.log(clickBtn);
-        clickBtn.classList.add("active"); //add active class
+           clickBtn.classList.remove("btn-outline");
+           clickBtn.classList.add("active"); //add active class
+        
         displayLevelWord(data.data);
   });
 };
