@@ -18,13 +18,25 @@ const loadLevelWord = (id) => {
 const displayLevelWord = (words) => {
 
        const wordContainer = document.getElementById("word-container");
-    //    wordContainer.innerHTML = "";
+       wordContainer.innerHTML = "";
        
        for(let word of words){
         const wordDiv = document.createElement("div");
         wordDiv.innerHTML = `
         
-           <p>Cat</p>
+           <div class="bg-white rounded-xl shadow-sm text-center py-10 px-5 space-y-3">
+            <h2 class="text-2xl font-bold">${word.word}</h2>
+            <p class="font-semibold">Meaning /Pronounciation</p>
+            <p class="text-2xl font-medium bangla-font">"${word.meaning} / ${word.pronunciation}"</p>
+
+            <div class="btn flex justify-between items-center bg-white shadow-none border-none">
+               
+               <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
+
+               <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
+
+            </div>
+       </div>
         
         `;
 
