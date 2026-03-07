@@ -35,6 +35,43 @@ const loadLevelWord = (id) => {
   });
 };
 
+const loadWordDetail = async (id) => {
+
+     const url = `https://openapi.programming-hero.com/api/word/${id}`;
+
+     const res = await fetch(url);
+     const details = await res.json();
+     displayWordDetails(details.data);
+}
+
+const displayWordDetails = (word) => {
+
+    console.log(word);
+    const detailsBox = document.getElementById("details-container");
+    detailsBox.innerHTML = `
+    
+        <div class="">
+            <h2 class="text-2xl font-bold">${word.word} (<i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation})</h2>
+         </div>
+         <div class="">
+           <h2 class="font-bold">Meaning</h2>
+           <p>${word.meaning}</p>
+         </div>
+         <div class="">
+           <h2 class="font-bold">Example</h2>
+           <p>${word.sentence}</p>
+         </div>
+         <div class="">
+           <h2 class="font-bold">সমার্থক শব্দ গুলো</h2>
+           <span class="btn">Enthusiastic</span>
+           <span class="btn">excited</span>
+           <span class="btn">keen</span>
+         </div>
+         <div class="btn btn-primary">Complete Learning</div>
+    `;
+    document.getElementById("word_modal").showModal();
+}
+
 const displayLevelWord = (words) => {
 
        const wordContainer = document.getElementById("word-container");
@@ -63,7 +100,7 @@ const displayLevelWord = (words) => {
 
             <div class="btn flex justify-between items-center bg-white shadow-none border-none">
                
-               <button onclick="my_modal_5.showModal()" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
+               <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
 
                <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
 
